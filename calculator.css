@@ -64,11 +64,11 @@ button:hover {
 .numberbutton:hover {
   background-color: rgb(101, 76, 107);
 }
-#clearbutton, #equalsbutton {
+#clearbutton, #equalsbutton, #deletebutton {
   background-color: rgb(114, 114, 114);
   color: white;
 }
-#clearbutton:hover, #equalsbutton:hover {
+#clearbutton:hover, #equalsbutton:hover, #deletebutton:hover {
   background-color: rgb(211, 211, 211);
   color: rgb(53, 53, 53);
   border-color: rgb(160, 160, 160);
@@ -141,6 +141,12 @@ button:hover {
 }
 #clearbutton {
   grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 1;
+  grid-row-end: 2;
+}
+#deletebutton {
+  grid-column-start: 3;
   grid-column-end: 4;
   grid-row-start: 1;
   grid-row-end: 2;

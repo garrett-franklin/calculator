@@ -44,6 +44,9 @@ for (let i = 0; i < 10; i++) {
 const display = document.querySelector(".display");
 function updateDisplay(number) {
   if (number === "." && displayValue.includes(".")) return;
+  if (!nextOperator) {
+    currentTotal = null;
+  }
   displayValue = displayValue + number;
   display.textContent = displayValue;
 }
@@ -62,6 +65,7 @@ function updateNextOperator(operator) {
   }
 }
 function equals() {
+  if (!nextOperator) return;
   currentTotal = operate(nextOperator, currentTotal, Number(displayValue));
   nextOperator = null;
   displayValue = "";
@@ -72,6 +76,16 @@ function clear() {
   nextOperator = null;
   displayValue = "";
   display.textContent = 0
+}
+function deleteLast() {
+  if (displayValue === "") return;
+  if (displayValue.length === 1) {
+    displayValue = "";
+    display.textContent = 0;
+    return;
+  }
+  displayValue = displayValue.slice(0, displayValue.length - 1);
+  display.textContent = displayValue;
 }
 
 // Link button functionality
@@ -87,3 +101,6 @@ const equalsButton = document.querySelector("#equalsbutton");
 equalsButton.addEventListener("click", equals);
 const clearButton = document.querySelector("#clearbutton");
 clearButton.addEventListener("click", clear);
+
+const deleteButton = document.querySelector("#deletebutton");
+deleteButton.addEventListener("click", deleteLast);
