@@ -35,23 +35,25 @@ const buttonContainer = document.querySelector(".buttoncontainer");
 for (let i = 0; i < 10; i++) {
   const button = document.createElement("button");
   button.setAttribute("class", "numberbutton");
-  button.setAttribute("id", i);
+  button.setAttribute("id", `number${i}`);
+  button.setAttribute("value", i);
   button.textContent = i;
   buttonContainer.appendChild(button);
 }
-// Functions for updating the display
+// Functions for calculations and updating the display
 const display = document.querySelector(".display");
 function updateDisplay(number) {
-  // Display value is a string, so + concats the number to the end
+  if (number === "." && displayValue.includes(".")) return;
   displayValue = displayValue + number;
   display.textContent = displayValue;
 }
 function updateNextOperator(operator) {
-  if (!nextOperator) {
+  if (!nextOperator && !currentTotal) {
     currentTotal = Number(displayValue);
     displayValue = "";
     nextOperator = operators[operator];
-    console.log(currentTotal, displayValue, nextOperator);
+  } else if (!nextOperator && currentTotal) {
+    nextOperator = operators[operator];
   } else {
     currentTotal = operate(nextOperator, currentTotal, Number(displayValue));
     nextOperator = operators[operator];
@@ -59,14 +61,29 @@ function updateNextOperator(operator) {
     display.textContent = currentTotal;
   }
 }
+function equals() {
+  currentTotal = operate(nextOperator, currentTotal, Number(displayValue));
+  nextOperator = null;
+  displayValue = "";
+  display.textContent = currentTotal;
+}
+function clear() {
+  currentTotal = null;
+  nextOperator = null;
+  displayValue = "";
+  display.textContent = 0
+}
 
-// Link display functions to buttons
+// Link button functionality
 const numberButtons = document.querySelectorAll(".numberbutton");
 numberButtons.forEach(button => {
-  button.addEventListener("click", e => updateDisplay(e.target.id));
+  button.addEventListener("click", e => updateDisplay(e.target.value));
 })
-
 const operatorButtons = document.querySelectorAll(".operatorbutton");
 operatorButtons.forEach(button => {
   button.addEventListener("click", e => updateNextOperator(e.target.id));
 })
+const equalsButton = document.querySelector("#equalsbutton");
+equalsButton.addEventListener("click", equals);
+const clearButton = document.querySelector("#clearbutton");
+clearButton.addEventListener("click", clear);
