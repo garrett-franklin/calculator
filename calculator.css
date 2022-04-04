@@ -1,4 +1,5 @@
 body {
+  margin: none;
   font-family: 'Roboto', sans-serif;
   display: flex;
   align-items: center;
@@ -10,6 +11,7 @@ body {
   box-shadow: 4px 3px rgba(53, 53, 53, 0.61);
   height: 600px;
   width: 400px;
+  max-height: 100vh;
   border: 1px groove rgb(53, 53, 53);
   border-radius: 5px;
   box-sizing: border-box;
@@ -67,7 +69,9 @@ button:hover {
   color: white;
 }
 #clearbutton:hover, #equalsbutton:hover {
-  background-color: rgb(90, 67, 67);
+  background-color: rgb(211, 211, 211);
+  color: rgb(53, 53, 53);
+  border-color: rgb(160, 160, 160);
 }
 #number0 {
   grid-column-start: 1;
