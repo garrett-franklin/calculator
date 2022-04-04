@@ -6,10 +6,11 @@ body {
   height: 100vh;
 }
 .calculator {
-  background-color: darkgrey;
-  box-shadow: 4px 3px rgba(0, 0, 0, 0.493);
+  background-color: rgb(192, 192, 192);
+  box-shadow: 4px 3px rgba(53, 53, 53, 0.61);
   height: 600px;
   width: 400px;
+  border: 1px groove rgb(53, 53, 53);
   border-radius: 5px;
   box-sizing: border-box;
   padding: 10px;
@@ -23,7 +24,7 @@ body {
   height: 20%;
   margin: 2px;
   color: white;
-  background-color: black;
+  background-color: rgb(53, 53, 53);
   border-radius: 5px;
   font-size: xx-large;
   display: flex;
@@ -39,11 +40,35 @@ body {
   grid-template-rows: 20% 20% 20% 20% 20%;
 }
 button {
-  border: none;
   border-radius: 5px;
+  border: 1px groove rgb(53, 53, 53);
   margin: 2px;
+  font-size: 15px;
 }
-
+button:hover {
+  border: 2px groove white;
+}
+.operatorbutton {
+  background-color:rgb(223, 109, 2);
+  color: white;
+}
+.operatorbutton:hover {
+  background-color:rgb(158, 90, 1);
+}
+.numberbutton {
+  background-color: rgb(53, 53, 53);
+  color: white;
+}
+.numberbutton:hover {
+  background-color: rgb(101, 76, 107);
+}
+#clearbutton, #equalsbutton {
+  background-color: rgb(114, 114, 114);
+  color: white;
+}
+#clearbutton:hover, #equalsbutton:hover {
+  background-color: rgb(90, 67, 67);
+}
 #number0 {
   grid-column-start: 1;
   grid-column-end: 3;
