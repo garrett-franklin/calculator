@@ -104,3 +104,34 @@ clearButton.addEventListener("click", clear);
 
 const deleteButton = document.querySelector("#deletebutton");
 deleteButton.addEventListener("click", deleteLast);
+
+// Add keyboard support
+function useNumberButton(e) {
+  const button = document.querySelector(`.numberbutton[value="${e.key}"]`);
+  if (!button) return;
+  updateDisplay(button.value);
+}
+function useOperatorButton(e) {
+  if (e.key === "*") {
+    updateNextOperator("multiply");
+    return;
+  } else if (e.key === "+") {
+    updateNextOperator("add");
+    return;
+  } else if (e.key === "-") {
+    updateNextOperator("subtract");
+    return;
+  } else if (e.key === "/") {
+    updateNextOperator("divide");
+    return;
+  } else if (e.key === "Enter") {
+    equals();
+    return;
+  } else if (e.key === "Backspace") {
+    clear();
+    return;
+  }
+};
+
+window.addEventListener("keydown", useNumberButton);
+window.addEventListener("keydown", useOperatorButton);
